@@ -1,13 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.front-card {
+	background: url("./assets/bg-card-front.png") no-repeat center/cover;
+	width: 310px;
+	height: 160px;
+	position: relative;
+	border-radius: 10px;
+}
+
+.back-card {
+	background: url("./assets/bg-card-back.png") no-repeat center/cover;
+	width: 310px;
+	height: 160px;
+	position: relative;
+	border-radius: 10px;
+}
+
+.back-card p {
+	top: 4.2rem;
+}
+
+@media (min-width: 1024px) {
+	.front-card,
+	.back-card {
+		width: 420px;
+		height: 250px;
+		border-radius: 10px;
+		/* margin-top: 25px; */
+	}
+	.back-card p {
+		top: 6.78rem;
+	}
+}
+text-slate
+.back-card {
+	background-color: blue;
+}
+
+form label {
+	@apply block uppercase tracking-wider text-slate-600 text-sm mb-2;
+}
+
+form input {
+	@apply border border-slate-300 py-3 px-4 rounded outline-none w-full;
+}
+
+.btn {
+	@apply py-3 px-6 rounded-lg bg-[#21092F] shadow text-white tracking-wide;
 }
