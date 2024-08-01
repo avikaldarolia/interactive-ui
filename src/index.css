@@ -12,39 +12,89 @@ body {
 }
 
 .front-card {
+	position: absolute;
+	top: 126.5px;
+	left: 25px;
 	background: url("./assets/bg-card-front.png") no-repeat center/cover;
-	width: 310px;
-	height: 160px;
-	position: relative;
+	height: 170px;
+	width: 300px;
 	border-radius: 10px;
+	z-index: 10;
 }
 
 .back-card {
+	position: absolute;
+	right: 20px;
 	background: url("./assets/bg-card-back.png") no-repeat center/cover;
-	width: 310px;
-	height: 160px;
-	position: relative;
+	height: 170px;
+	width: 300px;
+	top: 30px;
 	border-radius: 10px;
+	right: 10px;
 }
 
 .back-card p {
-	top: 4.2rem;
+	top: 4.5rem;
 }
 
-@media (min-width: 1024px) {
+form {
+	margin-top: 250px;
+}
+
+@media (min-width: 1440px) {
 	.front-card,
 	.back-card {
-		width: 420px;
+		position: relative;
+		width: 400px;
 		height: 250px;
 		border-radius: 10px;
-		/* margin-top: 25px; */
+	}
+
+	.back-card p {
+		top: 6.8rem;
+	}
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+	.front-card,
+	.back-card {
+		position: relative;
+		width: 370px;
+		height: 220px;
+		border-radius: 10px;
+	}
+
+	.back-card p {
+		top: 6.8rem;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+	.front-card,
+	.back-card {
+		width: 380px;
+		height: 190px;
+		border-radius: 10px;
+	}
+	.back-card {
+		top: 12px;
+		right: 50px;
+	}
+	.front-card {
+		top: 121px;
+		left: 70px;
 	}
 	.back-card p {
 		top: 6.78rem;
 	}
+	form {
+		margin-top: 254px;
+	}
+	.back-card p {
+		top: 4.8rem;
+	}
 }
-text-slate
-.back-card {
+text-slate .back-card {
 	background-color: blue;
 }
 
@@ -58,4 +108,9 @@ form input {
 
 .btn {
 	@apply py-3 px-6 rounded-lg bg-[#21092F] shadow text-white tracking-wide;
+}
+
+.shadow {
+	box-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1),
+		0px 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
