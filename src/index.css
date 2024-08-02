@@ -34,7 +34,7 @@ body {
 }
 
 .back-card p {
-	top: 4.5rem;
+	top: 4.6rem;
 }
 
 form {
@@ -53,6 +53,14 @@ form {
 	.back-card p {
 		top: 6.8rem;
 	}
+
+	.card-font-size {
+		font-size: 2.8rem;
+	}
+}
+
+.card-font-size {
+	font-size: 1.5rem;
 }
 
 @media (min-width: 1024px) and (max-width: 1439px) {
@@ -66,6 +74,10 @@ form {
 
 	.back-card p {
 		top: 5.8rem;
+	}
+
+	.card-font-size {
+		font-size: 1.8rem;
 	}
 }
 
@@ -93,7 +105,11 @@ form {
 	.back-card p {
 		top: 4.8rem;
 	}
+	.card-font-size {
+		font-size: 1.8rem;
+	}
 }
+
 text-slate .back-card {
 	background-color: blue;
 }
@@ -113,4 +129,8 @@ form input {
 .shadow {
 	box-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1),
 		0px 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.error {
+	@apply text-red-500 mt-1;
 }

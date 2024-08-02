@@ -27,6 +27,10 @@ export default function App() {
 			newErrors.name = "Cardholder name is required";
 		}
 
+		if (!/^[A-Za-z]+$/.test(name)) {
+			newErrors.name = "Please enter a valid name.";
+		}
+
 		if (!/^\d{16}$/.test(cardNumber.replace(/\s+/g, ""))) {
 			newErrors.cardNumber = "Card number must be 16 digits";
 		}
@@ -50,6 +54,17 @@ export default function App() {
 		}
 	};
 
+	const formatCard = (cardNumber: string) => {
+		let newformattedCardNumber = "";
+		for (let i = 0; i < cardNumber.length; i++) {
+			if (i > 0 && i % 4 === 0) {
+				newformattedCardNumber += " ";
+			}
+			newformattedCardNumber += cardNumber[i];
+		}
+		return newformattedCardNumber;
+	};
+
 	return (
 		<>
 			<section>
@@ -68,10 +83,10 @@ export default function App() {
 						<article className="front-card shadow p-3 md:p-5 flex flex-col justify-between font-semibold">
 							<img className="logo w-10 md:w-20" src={logo} alt="" />
 							<div className="text-white">
-								<h2 className="md:text-xl lg:text-3xl tracking-wider">
-									{cardNumber ? cardNumber : "1234 4567 7890 1234"}
+								<h2 className="card-font-size tracking-wider">
+									{cardNumber ? formatCard(cardNumber) : "1234 4567 7890 1234"}
 								</h2>
-								<ul className="flex items-center md:text-xl justify-between mt-1 md:mt-5 uppercase tracking-wide">
+								<ul className="flex items-center md:text-xl justify-between mt-3 lg:mt-3 uppercase tracking-wide">
 									<li className="text-sm">{name ? name : "Avikal Darolia"}</li>
 									<li className="text-sm">
 										{month ? month : "00"}/{year ? year : "00"}
@@ -95,12 +110,13 @@ export default function App() {
 									<label htmlFor="cardholder_name">Cardholder Name</label>
 									<input
 										type="text"
+										className={errors.name && "outline-red-500"}
 										placeholder="Eg. Avikal Darolia"
 										value={name}
 										onChange={(e) => setName(e.target.value)}
 										required
 									/>
-									{errors.name && <p className="text-red-500">{errors.name}</p>}
+									{errors.name && <p className="error">{errors.name}</p>}
 								</div>
 								<div className="">
 									<label htmlFor="card_number">Card Number</label>
@@ -108,12 +124,13 @@ export default function App() {
 										type="text"
 										placeholder="Eg. 1234 5678 9012 3456"
 										maxLength={16}
+										className={errors.cardNumber && "outline-red-500"}
 										value={cardNumber}
 										onChange={(e) => setCardNumber(e.target.value)}
 										required
 									/>
 									{errors.cardNumber && (
-										<p className="text-red-500">{errors.cardNumber}</p>
+										<p className="error">{errors.cardNumber}</p>
 									)}
 								</div>
 								<div className="flex items-center justify-between gap-6">
@@ -122,6 +139,7 @@ export default function App() {
 										<div className="flex gap-3">
 											<input
 												type="text"
+												className={errors.month && "outline-red-500"}
 												placeholder="MM"
 												maxLength={2}
 												value={month}
@@ -131,18 +149,15 @@ export default function App() {
 											<input
 												type="text"
 												placeholder="YY"
+												className={errors.year && "outline-red-500"}
 												value={year}
 												onChange={(e) => setYear(e.target.value)}
 												required
 												maxLength={2}
 											/>
 										</div>
-										{errors.month && (
-											<p className="text-red-500">{errors.month}</p>
-										)}
-										{errors.year && (
-											<p className="text-red-500">{errors.year}</p>
-										)}
+										{errors.month && <p className="error">{errors.month}</p>}
+										{errors.year && <p className="error">{errors.year}</p>}
 									</div>
 									<div className="flex flex-col">
 										<label htmlFor="cvc">CVC</label>
@@ -150,11 +165,12 @@ export default function App() {
 											type="text"
 											placeholder="Eg. 123"
 											value={cvc}
+											className={errors.cvc && "outline-red-500"}
 											onChange={(e) => setCvc(e.target.value)}
 											maxLength={3}
 											required
 										/>
-										{errors.cvc && <p className="text-red-500">{errors.cvc}</p>}
+										{errors.cvc && <p className="error">{errors.cvc}</p>}
 									</div>
 								</div>
 								<button className="btn w-full" type="submit">
