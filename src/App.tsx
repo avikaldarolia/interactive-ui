@@ -5,7 +5,7 @@ import logo from "./assets/card-logo.svg";
 import tick from "./assets/icon-complete.svg";
 
 export default function App() {
-	const [confirmed, setConfirmed] = useState(true);
+	const [confirmed, setConfirmed] = useState(false);
 	const [name, setName] = useState("");
 	const [cardNumber, setCardNumber] = useState("");
 	const [cvc, setCvc] = useState("");
@@ -63,8 +63,8 @@ export default function App() {
 						/>
 					</picture>
 				</div>
-				<div className="grid grid-cols-1 gap-8 lg:gap-0 lg:grid-cols-2 mx-auto max-w-7xl">
-					<div className="mt-6 md:mt-8 lg:mt-10 mx-5 lg:mx-0 grid grid-cols-1 gap-3 lg:max-w-[480px]">
+				<div className="grid grid-cols-1 gap-8 lg:gap-0 lg:grid lg:grid-cols-6 mx-auto max-w-7xl">
+					<div className="mt-6 lg:col-span-2 md:mt-8 lg:mt-10 mx-5 lg:mx-0 grid grid-cols-1 gap-3">
 						<article className="front-card shadow p-3 md:p-5 flex flex-col justify-between font-semibold">
 							<img className="logo w-10 md:w-20" src={logo} alt="" />
 							<div className="text-white">
@@ -86,8 +86,8 @@ export default function App() {
 						</article>
 					</div>
 
-					<div className="p-5 md:p-2">
-						{!confirmed && (
+					<div className="p-5 md:p-0 lg:ml-24 lg:col-span-4">
+						{!confirmed ? (
 							<form
 								onSubmit={handleSubmit}
 								className="flex flex-col justify-center gap-6 max-w-lg mx-auto">
@@ -107,7 +107,7 @@ export default function App() {
 									<input
 										type="text"
 										placeholder="Eg. 1234 5678 9012 3456"
-										maxLength={19}
+										maxLength={16}
 										value={cardNumber}
 										onChange={(e) => setCardNumber(e.target.value)}
 										required
@@ -161,8 +161,9 @@ export default function App() {
 									Confirm
 								</button>
 							</form>
+						) : (
+							<ConfirmationScreen setConfirmed={setConfirmed} />
 						)}
-						{confirmed && <ConfirmationScreen setConfirmed={setConfirmed} />}
 					</div>
 				</div>
 			</section>
@@ -177,7 +178,7 @@ function ConfirmationScreen({
 }) {
 	return (
 		<>
-			<div className="flex flex-col mt-[250px] md:mt-[280px] lg:h-screen lg:mt-0 justify-center gap-4 max-w-lg mx-auto">
+			<div className="flex flex-col mt-[250px] md:mt-[280px] justify-center gap-4 max-w-lg mx-auto">
 				<img src={tick} alt="" className="block mx-auto" />
 				<h1 className="text-slate-600 text-center md:text-3xl lg:my-6 uppercase">
 					Thank you
