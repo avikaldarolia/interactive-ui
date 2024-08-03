@@ -27,7 +27,7 @@ export default function App() {
 			newErrors.name = "Cardholder name is required";
 		}
 
-		if (!/^[A-Za-z]+$/.test(name)) {
+		if (!/^[A-Za-z\s]+$/.test(name)) {
 			newErrors.name = "Please enter a valid name.";
 		}
 
@@ -52,6 +52,15 @@ export default function App() {
 		if (Object.keys(newErrors).length === 0) {
 			setConfirmed(true);
 		}
+	};
+
+	const handleThankYou = () => {
+		setName("");
+		setCardNumber("");
+		setCvc("");
+		setMonth("");
+		setYear("");
+		setConfirmed(false);
 	};
 
 	const formatCard = (cardNumber: string) => {
@@ -178,7 +187,7 @@ export default function App() {
 								</button>
 							</form>
 						) : (
-							<ConfirmationScreen setConfirmed={setConfirmed} />
+							<ConfirmationScreen handleThankYou={handleThankYou} />
 						)}
 					</div>
 				</div>
@@ -188,9 +197,9 @@ export default function App() {
 }
 
 function ConfirmationScreen({
-	setConfirmed,
+	handleThankYou,
 }: {
-	setConfirmed: (confirmed: boolean) => void;
+	handleThankYou: () => void;
 }) {
 	return (
 		<>
@@ -203,7 +212,7 @@ function ConfirmationScreen({
 					We've added your card details
 				</p>
 				<button
-					onClick={() => setConfirmed(false)}
+					onClick={() => handleThankYou()}
 					className="btn block mx-auto w-full">
 					Continue
 				</button>
