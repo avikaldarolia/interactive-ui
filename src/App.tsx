@@ -142,7 +142,7 @@ export default function App() {
 										<p className="error">{errors.cardNumber}</p>
 									)}
 								</div>
-								<div className="flex items-center justify-between gap-6">
+								<div className="flex justify-between gap-6">
 									<div className="flex flex-col">
 										<label htmlFor="expiry_date">Exp. Date(MM/YY)</label>
 										<div className="flex gap-3">
